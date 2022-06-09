@@ -18,8 +18,10 @@ In a debian/ubuntu terminal:
 
 1. Install dependencies
 2. Setup credentials
+
 EDITOR=nano rails credentials:edit
 
 gmail:
-  mailer_login: **your login**
-  mailer_password_secured: **gmail app password**
+  mailer_login: *your login*
+  mailer_password_secured: *gmail app password*
+
