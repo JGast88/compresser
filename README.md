@@ -25,3 +25,6 @@ EDITOR=nano rails credentials:edit
     - mailer_login:  **your login**
     - mailer_password_secured: **gmail app password**
 
+3. Bundle install
+4. start redis + sidekiq
+5. run server
