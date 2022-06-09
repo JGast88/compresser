@@ -9,7 +9,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -34,7 +34,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -73,4 +73,35 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.action_controller.asset_host = 'http://localhost:3000'
+  config.action_mailer.asset_host = 'http://localhost:3000'
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_controller.default_url_options = { host: 'http://localhost:3000' }
+  Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+   address: "smtp.gmail.com",
+   port: 587,
+   domain: 'gmail.com',
+   authentication: "plain",
+   enable_starttls_auto: true,
+   user_name: Rails.application.credentials[:gmail][:mailer_login],
+   password: Rails.application.credentials[:gmail][:mailer_password_secured]
+  }
+
+  # yandex
+  # config.action_mailer.smtp_settings = {
+  #   tls: true,
+  #   address: 'smtp.yandex.ru',
+  #   port: 465,
+  #   domain: 'yandex.ru',
+  #   authentication: 'plain',
+  #   enable_starttls_auto: true,
+  #   user_name: Rails.application.credentials[:yandex][:mailer_login],
+  #   password: Rails.application.credentials[:yandex][:mailer_password]
+  # }
 end

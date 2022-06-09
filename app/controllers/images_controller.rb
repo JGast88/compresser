@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ImagesController < ApplicationController
   before_action :set_image, only: %i[ show edit update destroy ]
 
@@ -25,6 +27,7 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
+        ImageCompressJob.perform_later(@image.id)
         format.html { redirect_to image_url(@image), notice: "Image was successfully created." }
         format.json { render :show, status: :created, location: @image }
       else
@@ -55,6 +58,14 @@ class ImagesController < ApplicationController
       format.html { redirect_to images_url, notice: "Image was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def download
+    uuid = params[:uuid]
+    @image = Image.find_by(uuid: uuid)
+
+    image_url = @image.compressed_image_url
+    Down.download(image_url, destination: "./public/downloaded_images/#{@image.uuid}")
   end
 
   private

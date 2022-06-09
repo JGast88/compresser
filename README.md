@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
 * System dependencies
+Ruby: 3.0.4
+PostgreSQL: 13.7
+Redis + Sidekiq
+Vips imagemagick
 
 * Configuration
 
-* Database creation
+In a Mac terminal:
 
-* Database initialization
+  $ brew install imagemagick vips
+  
+In a debian/ubuntu terminal:
 
-* How to run the test suite
+  $ sudo apt install imagemagick libvips
 
-* Services (job queues, cache servers, search engines, etc.)
+1. Install dependencies
+2. Setup credentials
+EDITOR=nano rails credentials:edit
 
-* Deployment instructions
-
-* ...
+gmail:
+  mailer_login: **your login**
+  mailer_password_secured: **gmail app password**
