@@ -11,6 +11,12 @@
     </div>
   <% end %>
 
+  <%= form.label :email %>
+  <%= form.text_field :email %>
+
+  <%= form.label :raw_image %>
+  <%= form.file_field :raw_image %>
+
   <div class="actions">
     <%= form.submit %>
   </div>
