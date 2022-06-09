@@ -21,7 +21,7 @@ In a debian/ubuntu terminal:
 
 EDITOR=nano rails credentials:edit
 
-gmail:
-  mailer_login: *your login*
-  mailer_password_secured: *gmail app password*
+- gmail
+    - mailer_login:  **your login**
+    - mailer_password_secured: **gmail app password**
 
