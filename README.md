@@ -1,30 +1,34 @@
-# README
+# Сервис для оптимизации изображений.
 
-* System dependencies
+### Features
+
+1. Пользователь заходит на страницу формы
+2. Пользователь указывает email и прикрепляет картинку
+3. Запускается фоновая задача по обработке картинки
+  Если обработка прошла успешно, то на email пользователя приходит уведомление со ссылкой на скачивание обработанного изображение.
+  Если обработка провалилась, то на email пользователя приходит уведомление о провале.
+4. Получив уведомление об успешно обработанном изображении, пользователь переходит по ссылке и скачивает изображение.
+
+Обработанные изображения хранятся в папке `public/compressed_images`
+Обработанные изображение скачиваются в папку `public/downloaded_images`
+
+### Зависимости
 Ruby: 3.0.4
-PostgreSQL: 13.7
 Redis + Sidekiq
-Vips imagemagick
+vips для обработки
 
-* Configuration
+### Setup
 
-In a Mac terminal:
+1. Установите зависимости
+2. Добавьте в credentials данные мейлера
 
-  $ brew install imagemagick vips
-  
-In a debian/ubuntu terminal:
+`EDITOR=nano rails credentials:edit`
 
-  $ sudo apt install imagemagick libvips
+    gmail:
+        mailer_login: <your login>
+        mailer_password_secured: <gmail app password>
 
-1. Install dependencies
-2. Setup credentials
-
-EDITOR=nano rails credentials:edit
-
-- gmail:
-    - mailer_login:  **your login**
-    - mailer_password_secured: **gmail app password**
-
-3. Bundle install
-4. start redis + sidekiq
-5. run server
+3. `bundle install`
+4. `redis-server`
+4. `sidekiq`
+5. `rails server`
