@@ -64,7 +64,7 @@ class ImagesController < ApplicationController
     uuid = params[:uuid]
     @image = Image.find_by(uuid: uuid)
 
-    image_url = @image.compressed_image_url
+    image_url = @image.optimized_variant_url
     Down.download(image_url, destination: "./public/downloaded_images/#{@image.uuid}")
   end
 
