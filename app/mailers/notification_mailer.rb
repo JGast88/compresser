@@ -7,6 +7,6 @@ class NotificationMailer < ApplicationMailer
       'Compress failed!'
     end
 
-    mail(to: 'jgast88@yandex.ru', subject: text)
+    mail(to: @image.email, subject: text)
   end
 end
