@@ -29,6 +29,7 @@ vips для обработки
         mailer_password_secured: <gmail app password>
 
 3. `bundle install`
-4. `redis-server`
-4. `sidekiq`
-5. `rails server`
+4. `rails db:migrate`
+5. `redis-server`
+6. `sidekiq`
+7. `rails server`
