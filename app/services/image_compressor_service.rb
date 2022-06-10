@@ -19,7 +19,7 @@ class ImageCompressorService < ApplicationService
     # raw_image_path = @image.raw_image.service_url
     # raw_image_path = URI.parse(@image.raw_image.service_url)
 
-    # TODO: КАК ПОЛУЧИТЬ УРЛ КАРТИНКИ В БАЗЕ ДАННЫХ??? пока использовать заглушку
+    # TODO: КАК ПОЛУЧИТЬ ПУТЬ КАРТИНКИ сохраненной ActiveStorage??? пока использовать заглушку
     raw_image_path = 'public/test.png'
     pipeline = ImageProcessing::Vips.source(raw_image_path)
     # optimized_image = pipeline.saver(quality: 50).call(destination: "public/compressed111.png")
