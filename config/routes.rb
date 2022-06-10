@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'images#index'
   resources :uploads
   resources :images
   post 'images/compress', to: 'images#create'
