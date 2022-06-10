@@ -2,7 +2,9 @@ class Image < ApplicationRecord
   include Rails.application.routes.url_helpers
   LOCALHOST = 'http://localhost:3000/'.freeze
 
-  has_one_attached :raw_image
+  has_one_attached :raw_image do |attachable|
+    attachable.variant :optimized, resize_to_limit: [10, 710]
+  end
 
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :raw_image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..5.megabytes }
