@@ -28,7 +28,7 @@ class ImagesController < ApplicationController
     respond_to do |format|
       if @image.save
         ImageCompressJob.perform_later(@image.id)
-        format.html { redirect_to image_url(@image), notice: "Image was successfully created." }
+        format.html { redirect_to image_url(@image), notice: "Image was successfully created. Proccessing... You will recieve notification result." }
         format.json { render :show, status: :created, location: @image }
       else
         format.html { render :new, status: :unprocessable_entity }
