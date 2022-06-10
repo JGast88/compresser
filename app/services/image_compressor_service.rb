@@ -17,10 +17,10 @@ class ImageCompressorService < ApplicationService
       optimized_variant_url = Rails.application.routes.url_helpers.url_for(optimized_image)
       uuid = SecureRandom.uuid
       @image.update(uuid: uuid, optimized_variant_url: optimized_variant_url)
-      NotificationMailer.with(image: @image, optimized_variant_url: optimized_variant_url).send_notification.deliver_now
+      NotificationMailer.with(image: @image, optimized_variant_url: optimized_variant_url).send_notification.deliver_later
     else
       # compression failed
-      NotificationMailer.with(image: nil).send_notification.deliver_now
+      NotificationMailer.with(image: nil).send_notification.deliver_later
     end
   end
 end
