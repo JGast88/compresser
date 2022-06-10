@@ -2,8 +2,10 @@ class Image < ApplicationRecord
   include Rails.application.routes.url_helpers
   LOCALHOST = 'http://localhost:3000/'.freeze
 
-  validates :email, presence: true
   has_one_attached :raw_image
+
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :raw_image, presence: true, blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 0..5.megabytes }
 
   def compressed_image_path
     "compressed_images/#{uuid}.png"
